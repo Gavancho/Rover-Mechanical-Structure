@@ -1,0 +1,185 @@
+\documentclass[11pt]{report}
+
+% Basic Packages
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+%\usepackage[backend=biber, style=numeric, sorting=none]{biblatex} % APA with numeric citations
+%\addbibresource{References.bib} % Import the bibliography file
+\usepackage[numbers]{natbib} % Use numeric citations
+\bibliographystyle{unsrt} % Specify bibliography style
+\usepackage{caption}
+\usepackage{tocloft}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{titlesec}
+\usepackage{textcomp}
+\usepackage[table]{xcolor} % For shading cells
+\usepackage{array}         % For custom column widths
+\usepackage{multirow, colortbl}
+\usepackage{booktabs}
+\usepackage{rotating}
+\usepackage{graphicx}
+\usepackage{pifont}  % For \checkmark and \xmark
+\usepackage{amssymb} 
+\usepackage{fancyhdr} % For custom page numbering
+\usepackage{placeins} % This forces LaTeX to place all preceding floats before continuing with regular text.
+\usepackage{titlesec} % optional, for more control over formatting
+\usepackage{etoolbox} % for patching macros safely
+\usepackage{xurl}  % Allows line breaks in URLs at more places
+
+\newcommand{\degree}{\ensuremath{^\circ}}
+
+% Adjust caption spacing
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{5pt}
+\captionsetup{font=scriptsize, justification=centering}
+
+% Hyperref for links
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black]{hyperref}
+
+% Optional Table Support
+\usepackage{array, tabularx, xcolor, booktabs}
+
+% Line Spacing
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5}
+
+% Font Setup
+\usepackage{mathptmx}
+
+% Rename "Contents" to "Table of Contents"
+\renewcommand{\contentsname}{Table of Contents}
+
+% Redefine section numbering
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Customize the ToC title
+\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries}
+\setlength{\cftbeforetoctitleskip}{-1em}
+\setlength{\cftaftertoctitleskip}{1em}
+
+% Redefine Bibliography Title to Use Section-Level Formatting
+\makeatletter
+\renewcommand{\chapter}{\@startsection{section}{1}{\z@}{-3.5ex \@plus -1ex \@minus -.2ex}%
+  {2.3ex \@plus.2ex}{\normalfont\Large\bfseries}}
+\makeatother
+
+% Adjust Figure/Table numbering format in ToC
+\renewcommand{\cftfigpresnum}{Figure~}
+\renewcommand{\cfttabpresnum}{Table~}
+\renewcommand{\cftfigaftersnum}{ - }
+\renewcommand{\cfttabaftersnum}{ - }
+
+\setlength{\cftfignumwidth}{3cm} % Adjust width for figure numbers
+\setlength{\cfttabnumwidth}{3cm} % Adjust width for table numbers
+
+% Redefine List of Figures/Table Titles as Section-Style
+\usepackage{etoolbox} % For removing list headers from ToC
+
+% Make List of Figures and List of Tables titles match "section" format
+\titleformat{\listfigurename}[block]{\Large\bfseries}{}{0pt}{}
+\titleformat{\listtablename}[block]{\Large\bfseries}{}{0pt}{}
+
+% Prevent List of Figures/Tables from appearing in the ToC
+\patchcmd{\listoffigures}{\chapter*}{\section*}{}{}
+\patchcmd{\listoftables}{\chapter*}{\section*}{}{}
+
+% Define custom page styles for List of Figures and Tables
+\fancypagestyle{figures}{
+    \fancyhf{}
+    \fancyfoot[C]{F-\thepage} % Custom page numbering for figures
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{tables}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage} % Default page numbering for tables
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+
+
+\begin{document}
+    \begin{titlepage}
+        \centering
+        % University Logo
+        \includegraphics[width=0.3\textwidth]{Figures/Logo_UA.png}\\[1cm] 
+    
+        % University Name
+        {\Large \textbf{Universidade de Aveiro (University of Aveiro)}}\\[1cm]
+    
+    
+        % Document Title
+        {\Large \textbf{Supplementary Technical Repository}}\\[1cm]
+    
+        % Subject
+        {\large Projeto em Engenharia Aeroespacial (Project in Aerospace Engineering) - 42260}\\[.5cm]
+
+        % Departments
+        {\small
+            \textbf{DETI} - Departamento de Eletrónica, Telecomunicações e Informática \\
+            (Department of Electronics, Telecommunications, and Informatics)\\
+            \textbf{ESAN} - Escola Superior Aveiro Norte \\
+            (Aveiro North School)
+        }\\[1cm]
+    
+        % Student Names and Numbers
+        \begin{flushleft}
+            \textbf{Students:}\\
+            - Diogo Gavancho (113078)\\
+            - Diogo Ribeiro (108217)\\
+            - Márcio Teixeira (114074)\\
+            - Rui Alho (113992)\\[1cm]
+        
+            \textbf{Advising Professors:}\\
+            - Prof. Paulo Lima\\
+            - Prof. Ricardo Torcato\\[1cm]
+        
+            \textbf{Subject Coordinator:}\\
+            - Prof. Pedro Casau\\[2cm]
+        \end{flushleft}
+    
+        % Date
+        \vfill
+        {\large Date: June 2025}
+    
+        \thispagestyle{empty}
+    \end{titlepage}
+
+    % Table of Contents (start numbering)
+    \pagenumbering{roman} % Optional: Use Roman numerals for TOC
+    \tableofcontents
+    \clearpage
+
+    \pagenumbering{arabic} % Restart numbering with Arabic numerals
+    \setcounter{page}{1} % Start numbering from 1
+
+    \input{IntroductionToRepository}
+
+    \input{DesignBasis}
+
+    \input{ConceptualDesign}
+
+    \input{MaterialSelection}
+
+    \input{ModellingOfTheRoverSuspensionSystem}
+
+    \input{SimulationResultsAndValidation}
+
+    \clearpage % Start bibliography on a new page
+    \renewcommand{\bibname}{Bibliography} % Ensure the title matches the section formatting
+    \addcontentsline{toc}{section}{Bibliography} % Add to Table of Contents
+    \bibliography{Bibliography} % Link to your .bib file
+
+\end{document}
